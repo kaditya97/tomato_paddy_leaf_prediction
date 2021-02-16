@@ -2,3 +2,4 @@ flask
 keras
 pillow
 numpy
+gunicorn
