@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import tensorflow.keras
+import keras
 from PIL import Image, ImageOps
 import numpy as np
 
@@ -9,7 +9,7 @@ app = Flask(__name__, static_url_path='')
 @app.route("/", methods=["GET","POST"])
 def index():
     np.set_printoptions(suppress=True)
-    model = tensorflow.keras.models.load_model('vgg16.h5')
+    model = keras.models.load_model('vgg16.h5')
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     size = (224, 224)
     if request.method == 'POST':
