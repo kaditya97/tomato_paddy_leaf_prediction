@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomato and Paddy Leaf Predictor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body style="background-color: white;">
+    <div class="container">
+        <form action="{{ url_for('index')}}" method="post" enctype="multipart/form-data">
+            <center>
+                <h2 class="m-3">Tomato and Paddy Leaf Predictor</h2>
+            </center>
+                <div>
+                    <div class="form-group">
+                        <label for="images">Pick Your Image</label>
+                        <input id="images" name="images" type="file" accept="image/jpeg" onchange="readURL(this);">
+                    </div>
+                </div>
+            <br><br>
+            <center><button type="submit" class="btn btn-primary">Get Prediction</button></center>
+            <br>
+    </div>
+    </form>
+    <br><br>
+    <center>
+        <img id="ima" src="" alt="">
+        <h3>{{ prediction_text }}<h3></h3>
+        <h3>{{ val }}<h3></h3>
+    </center>
+    </div>
+    <script>
+        inp = document.getElementById("images")
+        function readURL(e) {
+            console.log(e.files[0])
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i];
+                var img = document.getElementById("ima");
+                img.height = 224;
+                img.width = 224;
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    img.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+                inp.after(img);
+            }
+        }
+    </script>
+</body>
+
+</html>
